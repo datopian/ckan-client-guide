@@ -1,4 +1,8 @@
-# Guide to using CKAN for data wranglers
+<div align="center">
+ 
+# Guide to interacting with CKAN<br/>for power users such as</br>data scientists, data engineers and data wranglers
+
+</div>
 
 This guide is about adding and managing data in CKAN programmatically. This guide assumes
 
