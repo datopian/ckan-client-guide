@@ -30,10 +30,10 @@ org_name = 'my-org'         # default organization on CKAN to add datasets to
 client = Client(endpoint, token, org_name)
 ```
 
- We will also use the Frictionless library in what follows:
+ We will also use the Frictionless library in what follows for abstracting loading files and datasets from disk:
 
 ```
-from ckanclient import f11s
+import {frictionless-lib-for-your-language} as f11s
 ```
 
 ### Upload a resource (file) (and implicitly create a new Dataset)
@@ -44,6 +44,7 @@ resource = f11s.load(resource_file_path)
 dataset_name = 'sample-dataset'
 dataset = f11s.Dataset({'name': dataset_name})
 dataset.add_resource(resource)
+client.push(resource)
 ```
 
 ### Create a new empty Dataset with metadata
@@ -59,12 +60,12 @@ client.push(dataset)
 ### Adding a resource to an existing Dataset
 
 ```python=
-resource_path = 'sample.csv'
+resource = f11s.load('sample.csv')
 
 # this will upload the file and add the resource to the dataset
 # NB: resource metadata e.g. name, title etc will be auto-inferred from the file
 client.push_resource(
-  resource_path,
+  resource,
   dataset='dataset-name',
   append=True
   )
